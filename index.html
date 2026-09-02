@@ -121,6 +121,24 @@
   .work-photo-ph .ic{font-size:20px;}
   .work-photo.ph .work-photo-ph{display:flex;}
   .work-photo .tag{position:absolute; left:8px; bottom:8px; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:#fff; background:rgba(0,0,0,.55); padding:4px 9px; border-radius:100px;}
+  .work-photo img{cursor:zoom-in;}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed; inset:0; z-index:999; background:rgba(5,5,5,.94); display:none; align-items:center; justify-content:center; padding:60px 80px;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%; max-height:100%; object-fit:contain; border-radius:2px;}
+  .lightbox-close, .lightbox-nav{background:rgba(15,15,15,.8); border:1px solid var(--border); color:var(--text); cursor:pointer; transition:all .15s;}
+  .lightbox-close:hover, .lightbox-nav:hover{border-color:var(--gold); color:var(--gold);}
+  .lightbox-close{position:absolute; top:20px; right:24px; width:42px; height:42px; border-radius:2px; font-size:18px;}
+  .lightbox-nav{position:fixed; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:2px; font-size:26px; display:flex; align-items:center; justify-content:center; line-height:1;}
+  .lightbox-nav.prev{left:20px;}
+  .lightbox-nav.next{right:20px;}
+  @media (max-width:700px){
+    .lightbox{padding:70px 16px;}
+    .lightbox-nav{width:38px; height:38px; font-size:20px;}
+    .lightbox-nav.prev{left:8px;} .lightbox-nav.next{right:8px;}
+    .lightbox-close{top:12px; right:12px; width:36px; height:36px;}
+  }
 
   /* WHY US */
   .about{max-width:820px; margin:0 auto; padding:0 24px; text-align:center;}
@@ -257,6 +275,13 @@
   <button class="filter-btn" data-filter="video">Video</button>
 </div>
 <div class="gallery reveal" id="galleryGrid"></div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous photo">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Next photo">›</button>
+</div>
 
 <div class="section-head reveal">
   <div class="kicker" id="aboutKicker">Why Choose Us</div>
@@ -609,6 +634,63 @@
 
   attachFilterHandlers();
   attachPkgFilterHandlers();
+
+  /* ============ LIGHTBOX ============ */
+  let lightboxItems = [];
+  let lightboxIndex = 0;
+
+  function getVisiblePhotoItems() {
+    return Array.from(document.querySelectorAll('#galleryGrid .work-photo')).filter(fig =>
+      !fig.classList.contains('hidden') && !fig.classList.contains('ph') && fig.querySelector('img')
+    );
+  }
+
+  function renderLightboxCurrent() {
+    const fig = lightboxItems[lightboxIndex];
+    if (!fig) return;
+    const img = fig.querySelector('img');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.alt;
+  }
+
+  function openLightbox(fig) {
+    lightboxItems = getVisiblePhotoItems();
+    const idx = lightboxItems.indexOf(fig);
+    if (idx === -1) return;
+    lightboxIndex = idx;
+    renderLightboxCurrent();
+    document.getElementById('lightbox').classList.add('open');
+    document.getElementById('lightbox').setAttribute('aria-hidden', 'false');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox').setAttribute('aria-hidden', 'true');
+  }
+
+  function lightboxDelta(delta) {
+    if (!lightboxItems.length) return;
+    lightboxIndex = (lightboxIndex + delta + lightboxItems.length) % lightboxItems.length;
+    renderLightboxCurrent();
+  }
+
+  document.getElementById('galleryGrid').addEventListener('click', (e) => {
+    const fig = e.target.closest('.work-photo');
+    if (!fig || fig.classList.contains('ph') || !fig.querySelector('img')) return;
+    openLightbox(fig);
+  });
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => lightboxDelta(-1));
+  document.getElementById('lightboxNext').addEventListener('click', () => lightboxDelta(1));
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxDelta(-1);
+    if (e.key === 'ArrowRight') lightboxDelta(1);
+  });
 
   // Fade-in on scroll
   if ('IntersectionObserver' in window) {
