@@ -318,6 +318,19 @@
   </div>
 </footer>
 
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  /* ============ NETLIFY IDENTITY — handles invite/recovery links, which always land here on "/" ============ */
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <script>
   /* ============ BOOKING FORM — do not change WEBHOOK_URL, it feeds the n8n automation ============ */
   const WEBHOOK_URL = "https://dugaev.app.n8n.cloud/webhook/50157a11-4013-454f-b144-ad2a4178bc93";
