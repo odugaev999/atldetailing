@@ -116,6 +116,7 @@
   .work-photo.hidden{display:none;}
   .work-photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s;}
   .work-photo:hover img{transform:scale(1.06);}
+  .work-photo video{width:100%; height:100%; object-fit:cover; display:block; background:#000;}
   .work-photo-ph{display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:var(--muted); font-size:12px;}
   .work-photo-ph .ic{font-size:20px;}
   .work-photo.ph .work-photo-ph{display:flex;}
@@ -253,6 +254,7 @@
   <button class="filter-btn" data-filter="interior">Interior</button>
   <button class="filter-btn" data-filter="before-after">Before &amp; After</button>
   <button class="filter-btn" data-filter="full-detail">Full Detail</button>
+  <button class="filter-btn" data-filter="video">Video</button>
 </div>
 <div class="gallery reveal" id="galleryGrid"></div>
 
@@ -511,13 +513,23 @@
 
   function renderGallery(gallery) {
     const grid = document.getElementById('galleryGrid');
-    grid.innerHTML = gallery.map(item => `
+    grid.innerHTML = gallery.map(item => {
+      if (item.video) {
+        return `
+      <figure class="work-photo" data-cat="${categoryToSlug(item.category || 'Video')}">
+        <video controls preload="metadata" playsinline ${item.poster ? `poster="${esc(item.poster)}"` : ''}>
+          <source src="${esc(item.video)}">
+        </video>
+        <span class="tag">${esc(item.category || 'Video')}</span>
+      </figure>`;
+      }
+      return `
       <figure class="work-photo" data-cat="${categoryToSlug(item.category)}">
         <img src="${esc(item.image)}" alt="${esc(item.category)} detail" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('ph');">
         <div class="work-photo-ph"><span class="ic">📷</span>Photo coming soon</div>
         <span class="tag">${esc(item.category)}</span>
-      </figure>
-    `).join('');
+      </figure>`;
+    }).join('');
     attachFilterHandlers();
   }
 
