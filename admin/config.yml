@@ -31,11 +31,14 @@ collections:
           - label: "Packages"
             name: "packages"
             widget: "list"
-            summary: "{{name}} — {{price}}"
+            summary: "{{name}} — ${{price}}"
             fields:
               - { label: "Name", name: "name", widget: "string" }
-              - { label: "Price (e.g. $99)", name: "price", widget: "string" }
+              - { label: "Base price (5 seats, leather — e.g. 99)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Surcharge for 7 seats", name: "seatSurcharge", widget: "number", value_type: "int", default: 30 }
+              - { label: "Discount for fabric interior (0 for Basic)", name: "fabricDiscount", widget: "number", value_type: "int", default: 0 }
               - { label: "Show 'Most Popular' badge", name: "featured", widget: "boolean", default: false }
+              - { label: "Short description (Premium/Platinum only, optional)", name: "description", widget: "text", required: false }
               - label: "Exterior features"
                 name: "exterior"
                 widget: "list"
@@ -44,6 +47,10 @@ collections:
                 name: "interior"
                 widget: "list"
                 field: { label: "Item", name: "item", widget: "string" }
+          - label: "Custom-quote categories (RV / Jet / Boat / Specialty)"
+            name: "quoteCategories"
+            widget: "list"
+            field: { label: "Category name", name: "value", widget: "string" }
           - label: "Portfolio Gallery"
             name: "gallery"
             widget: "list"
