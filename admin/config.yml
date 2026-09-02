@@ -56,9 +56,8 @@ collections:
             widget: "list"
             summary: "{{category}}"
             fields:
-              - { label: "Photo", name: "image", widget: "image", required: false, hint: "Leave empty if this entry is a video (fill in 'Video file' below instead)" }
-              - { label: "Video file", name: "video", widget: "file", required: false, hint: "Leave empty for a photo entry. For video: keep clips short and compressed — under ~30-50MB each, MP4 format, ideally 1080p or lower. Large 4K phone footage can be hundreds of MB and will be slow to upload and slow for visitors to load." }
-              - { label: "Video thumbnail (optional)", name: "poster", widget: "image", required: false, hint: "Optional cover image shown before the video is played" }
+              - { label: "Photo", name: "image", widget: "image", required: false, hint: "Leave empty if this entry is a video (fill in 'Video link' below instead)" }
+              - { label: "Video link (YouTube or Vimeo URL)", name: "videoUrl", widget: "string", required: false, hint: "Leave empty for a photo entry. Upload your video to YouTube (can be Unlisted so it's not on your channel page) or Vimeo, then paste the link here, e.g. https://youtube.com/watch?v=... or https://vimeo.com/... — YouTube/Vimeo already show a thumbnail and play button automatically." }
               - label: "Category"
                 name: "category"
                 widget: "select"
