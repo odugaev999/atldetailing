@@ -3,7 +3,7 @@
   "email": "atl.mobilecardetailing@gmail.com",
   "serviceArea": "Greater Toronto Area",
   "logo": "",
-  "heroImage": "",
+  "heroImage": "/images/uploads/photo_5465662973465532188_y.jpg",
   "hero": {
     "eyebrow": "Premium Mobile Detailing",
     "titleLine1": "ATL Mobile",
@@ -15,32 +15,86 @@
       "name": "Basic",
       "price": "$99",
       "featured": false,
-      "exterior": ["Wheel & tire cleaning", "Pre-wash & bug removal", "Snow foam hand wash", "Glossy finish"],
-      "interior": ["Full vacuum", "Interior window cleaning", "Hard surface wipe-down", "Seat cleaning"]
+      "exterior": [
+        "Wheel & tire cleaning",
+        "Pre-wash & bug removal",
+        "Snow foam hand wash",
+        "Glossy finish"
+      ],
+      "interior": [
+        "Full vacuum",
+        "Interior window cleaning",
+        "Hard surface wipe-down",
+        "Seat cleaning"
+      ]
     },
     {
       "name": "Premium",
       "price": "$325",
       "featured": true,
-      "exterior": ["Everything in Basic", "Clay mitt decontamination", "Wheel well cleaning", "Protective wax or hydrophobic glass treatment"],
-      "interior": ["Everything in Basic", "Carpet & upholstery shampoo", "Steam cleaning", "Tornador deep crevice cleaning"]
+      "exterior": [
+        "Everything in Basic",
+        "Clay mitt decontamination",
+        "Wheel well cleaning",
+        "Protective wax or hydrophobic glass treatment"
+      ],
+      "interior": [
+        "Everything in Basic",
+        "Carpet & upholstery shampoo",
+        "Steam cleaning",
+        "Tornador deep crevice cleaning"
+      ]
     },
     {
       "name": "Platinum",
       "price": "$545",
       "featured": false,
-      "exterior": ["Everything in Premium", "Iron removal & ceramic wax", "Engine bay detailing", "Underneath-car cleaning"],
-      "interior": ["Everything in Premium", "Full stain extraction", "Headliner cleaning", "Leather/plastic conditioning or ceramic coating"]
+      "exterior": [
+        "Everything in Premium",
+        "Iron removal & ceramic wax",
+        "Engine bay detailing",
+        "Underneath-car cleaning"
+      ],
+      "interior": [
+        "Everything in Premium",
+        "Full stain extraction",
+        "Headliner cleaning",
+        "Leather/plastic conditioning or ceramic coating"
+      ]
     }
   ],
   "gallery": [
-    {"image": "images/work-1.jpg", "category": "Exterior"},
-    {"image": "images/work-2.jpg", "category": "Interior"},
-    {"image": "images/work-3.jpg", "category": "Before & After"},
-    {"image": "images/work-4.jpg", "category": "Before & After"},
-    {"image": "images/work-5.jpg", "category": "Interior"},
-    {"image": "images/work-6.jpg", "category": "Full Detail"},
-    {"image": "images/work-7.jpg", "category": "Full Detail"},
-    {"image": "images/work-8.jpg", "category": "Exterior"}
+    {
+      "image": "images/work-1.jpg",
+      "category": "Exterior"
+    },
+    {
+      "image": "images/work-2.jpg",
+      "category": "Interior"
+    },
+    {
+      "image": "images/work-3.jpg",
+      "category": "Before & After"
+    },
+    {
+      "image": "images/work-4.jpg",
+      "category": "Before & After"
+    },
+    {
+      "image": "images/work-5.jpg",
+      "category": "Interior"
+    },
+    {
+      "image": "images/work-6.jpg",
+      "category": "Full Detail"
+    },
+    {
+      "image": "images/work-7.jpg",
+      "category": "Full Detail"
+    },
+    {
+      "image": "images/work-8.jpg",
+      "category": "Exterior"
+    }
   ]
 }
