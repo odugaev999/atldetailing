@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ATL Mobile Detailing — premium mobile car detailing across the Greater Toronto Area. Book your detail online.">
+<title>ATL Mobile Detailing — Premium Mobile Detailing in the GTA</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --card:#141414; --card2:#181818; --text:#f5f5f4; --muted:#9c9c9c;
+    --gold:#f0b429; --gold2:#d4930a; --border:#262626; --ok:#22c55e; --err:#ef4444;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg); color:var(--text); min-height:100vh;
+  }
+  a{color:inherit;}
+  .container{max-width:1100px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  .nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); background:rgba(6,6,6,.85); border-bottom:1px solid var(--border);}
+  .nav-inner{max-width:1200px; margin:0 auto; padding:16px 24px; display:flex; align-items:center; gap:12px;}
+  .logo-wrap{display:flex; align-items:center; gap:10px; text-decoration:none; position:relative;}
+  .logo-img{height:32px; display:none; object-fit:contain;}
+  .logo-fallback{display:flex; align-items:center; gap:6px; font-weight:800; font-size:16px; letter-spacing:.03em; text-transform:uppercase; white-space:nowrap;}
+  .logo-fallback .g{color:var(--gold);}
+  .nav-links{display:flex; gap:30px; margin-left:40px; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em;}
+  .nav-links button{background:none; border:none; font:inherit; color:var(--muted); cursor:pointer; padding:0; text-decoration:none; transition:color .15s;}
+  .nav-links button:hover{color:var(--text);}
+  .nav-cta{margin-left:auto; display:flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#1a1200; font-weight:800; font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; padding:11px 20px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity .15s;}
+  .nav-cta:hover{opacity:.9;}
+  @media (max-width:800px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{position:relative; overflow:hidden; padding:100px 24px 90px; text-align:left;}
+  .hero-bg{position:absolute; inset:0; z-index:0;}
+  .hero-bg img{width:100%; height:100%; object-fit:cover; opacity:.35; display:none;}
+  .hero-bg .fallback{position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 80% 0%, rgba(240,180,41,.14), transparent 55%),
+      radial-gradient(circle at 10% 90%, rgba(240,180,41,.06), transparent 45%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,.02) 0 2px, transparent 2px 40px),
+      linear-gradient(180deg,#0a0a0a,#000);
+  }
+  .hero-inner{position:relative; z-index:1; max-width:1100px; margin:0 auto;}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:11.5px; text-transform:uppercase; letter-spacing:.12em; color:var(--gold); margin-bottom:22px;}
+  .eyebrow::before{content:""; width:26px; height:1px; background:var(--gold);}
+  .hero h1{font-size:56px; margin:0 0 20px; font-weight:800; line-height:1.05; text-transform:uppercase; letter-spacing:-.01em;}
+  .hero h1 .l1{display:block; color:var(--text);}
+  .hero h1 .l2{display:block; background:linear-gradient(135deg,var(--gold),#fff4d6 40%,var(--gold2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero p{color:var(--muted); font-size:16px; max-width:460px; line-height:1.7; margin:0 0 32px;}
+  .hero-ctas{display:flex; align-items:center; gap:28px; flex-wrap:wrap;}
+  .btn-gold{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#1a1200; font-weight:800; font-size:14px; padding:15px 28px; border-radius:6px; text-decoration:none; border:none; cursor:pointer; transition:opacity .15s, transform .1s;}
+  .btn-gold:hover{opacity:.92;}
+  .hero-phone{font-weight:700; font-size:15px; letter-spacing:.04em; text-decoration:none; color:var(--text); border-bottom:1px solid var(--border); padding-bottom:2px;}
+  @media (max-width:640px){ .hero h1{font-size:38px;} }
+
+  /* TRUST ROW */
+  .trust{max-width:1000px; margin:0 auto; padding:36px 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px; border-top:1px solid var(--border); border-bottom:1px solid var(--border);}
+  @media (max-width:760px){ .trust{grid-template-columns:repeat(2,1fr);} }
+  .trust-item{display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center; padding:10px; font-size:12.5px; color:var(--muted);}
+  .trust-item .ic{font-size:20px;}
+
+  /* SECTION HEADS */
+  .section-head{max-width:1100px; margin:80px auto 30px; padding:0 24px; text-align:center;}
+  .section-head .kicker{font-size:11.5px; text-transform:uppercase; letter-spacing:.14em; color:var(--gold); margin-bottom:10px;}
+  .section-head h2{font-size:30px; margin:0 0 8px; font-weight:800; text-transform:uppercase; letter-spacing:-.01em;}
+  .section-head p{color:var(--muted); font-size:14px; margin:0 auto; max-width:480px;}
+
+  /* PACKAGES */
+  .filters{max-width:1100px; margin:0 auto 32px; padding:0 24px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+  .filter-btn{background:var(--card); border:1px solid var(--border); color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.06em; padding:9px 18px; border-radius:100px; cursor:pointer; transition:all .15s;}
+  .filter-btn:hover{color:var(--text); border-color:#3a3a3a;}
+  .filter-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#1a1200; border-color:transparent; font-weight:700;}
+
+  .packages{max-width:1100px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:900px){ .packages{grid-template-columns:1fr; max-width:480px;} }
+  .pkg{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px; display:flex; flex-direction:column; transition:transform .18s, border-color .18s, box-shadow .18s;}
+  .pkg:hover{transform:translateY(-3px); border-color:rgba(240,180,41,.4); box-shadow:0 16px 34px rgba(0,0,0,.4);}
+  .pkg.featured{border-color:var(--gold); position:relative;}
+  .pkg.featured::before{content:"Most Popular"; position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#1a1200; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; padding:4px 14px; border-radius:100px;}
+  .pkg h3{margin:6px 0 2px; font-size:18px; text-transform:uppercase; letter-spacing:.03em;}
+  .pkg .price{font-size:34px; font-weight:800; color:var(--gold); margin:6px 0 18px;}
+  .pkg .grp-label{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:14px 0 8px;}
+  .pkg ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px;}
+  .pkg li{font-size:13px; color:#d4d4d4; padding-left:20px; position:relative; line-height:1.4;}
+  .pkg li::before{content:"✓"; position:absolute; left:0; color:var(--gold); font-weight:700;}
+  .pkg .book-btn{margin-top:22px; width:100%; padding:13px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--text); font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.05em; cursor:pointer; transition:all .15s;}
+  .pkg .book-btn:hover{background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#1a1200; border-color:transparent;}
+
+  /* PORTFOLIO */
+  .gallery{max-width:1100px; margin:0 auto; padding:0 24px; display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media (max-width:900px){ .gallery{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:480px){ .gallery{grid-template-columns:1fr;} }
+  .work-photo{position:relative; aspect-ratio:4/3; border-radius:12px; overflow:hidden; background:var(--card); border:1px solid var(--border); transition:opacity .2s, transform .2s;}
+  .work-photo.hidden{display:none;}
+  .work-photo img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s;}
+  .work-photo:hover img{transform:scale(1.06);}
+  .work-photo-ph{display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:var(--muted); font-size:12px;}
+  .work-photo-ph .ic{font-size:20px;}
+  .work-photo.ph .work-photo-ph{display:flex;}
+  .work-photo .tag{position:absolute; left:8px; bottom:8px; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:#fff; background:rgba(0,0,0,.55); padding:4px 9px; border-radius:100px;}
+
+  /* WHY US */
+  .about{max-width:820px; margin:0 auto; padding:0 24px; text-align:center;}
+  .about p{color:var(--muted); font-size:14.5px; line-height:1.75; margin:0 0 14px;}
+  .about-points{display:flex; gap:22px; justify-content:center; flex-wrap:wrap; margin-top:26px; font-size:13px; color:var(--text);}
+  .about-points span{display:flex; align-items:center; gap:6px;}
+  .about-points b{color:var(--gold);}
+
+  /* CONTACT + FORM */
+  .contact-wrap{max-width:1000px; margin:16px auto 0; padding:0 24px; display:grid; grid-template-columns:1fr 1.3fr; gap:28px; align-items:start;}
+  @media (max-width:800px){ .contact-wrap{grid-template-columns:1fr;} }
+  .contact-info{display:flex; flex-direction:column; gap:16px;}
+  .contact-item{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px 20px; text-decoration:none; display:flex; flex-direction:column; gap:2px;}
+  .contact-item .lbl{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--gold);}
+  .contact-item .val{font-size:14.5px; font-weight:600;}
+
+  .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:32px;}
+  .card h2{margin:0 0 4px; font-size:20px; text-transform:uppercase; letter-spacing:.02em;}
+  .card .sub{color:var(--muted); font-size:13px; margin:0 0 24px;}
+
+  label{display:block; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:6px; margin-top:16px;}
+  label:first-of-type{margin-top:0;}
+  input, select, textarea{
+    width:100%; background:#0a0a0a; border:1px solid var(--border); color:var(--text);
+    padding:12px 14px; border-radius:8px; font-size:14px; font-family:inherit;
+  }
+  input:focus, select:focus, textarea:focus{outline:none; border-color:var(--gold);}
+  textarea{resize:vertical; min-height:80px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  @media (max-width:480px){ .row2{grid-template-columns:1fr;} }
+
+  button[type="submit"]{
+    width:100%; margin-top:24px; padding:14px; border:none; border-radius:8px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#1a1200;
+    font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; cursor:pointer;
+  }
+  button[type="submit"]:hover{opacity:.92;}
+  button[type="submit"]:disabled{opacity:.6; cursor:not-allowed;}
+
+  .status{margin-top:14px; padding:12px 14px; border-radius:10px; font-size:13px; display:none;}
+  .status.ok{display:block; background:rgba(34,197,94,.12); border:1px solid rgba(34,197,94,.3); color:#86efac;}
+  .status.err{display:block; background:rgba(239,68,68,.12); border:1px solid rgba(239,68,68,.3); color:#fca5a5;}
+
+  /* FOOTER */
+  .footer{margin-top:90px; border-top:1px solid var(--border); padding:32px 24px 40px;}
+  .footer-inner{max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-meta{color:var(--muted); font-size:12px; text-align:right; line-height:1.6;}
+  @media (max-width:600px){ .footer-inner{flex-direction:column; text-align:center;} .footer-meta{text-align:center;} }
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo-wrap">
+      <img id="logoImgNav" alt="ATL Mobile Detailing" class="logo-img">
+      <div class="logo-fallback"><span class="g">ATL</span><span>Mobile Detailing</span></div>
+    </a>
+    <div class="nav-links">
+      <button onclick="document.getElementById('packages').scrollIntoView()">Packages</button>
+      <button onclick="document.getElementById('portfolio').scrollIntoView()">Portfolio</button>
+      <button onclick="document.getElementById('contact').scrollIntoView()">Contact</button>
+    </div>
+    <a id="navCallLink" href="tel:6472809429" class="nav-cta">📞 Call Now</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg">
+    <img id="heroBgImg" alt="">
+    <div class="fallback"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="eyebrow" id="heroEyebrow">Premium Mobile Detailing</div>
+    <h1><span class="l1" id="heroLine1">ATL Mobile</span><span class="l2" id="heroLine2">Detailing</span></h1>
+    <p id="heroSubtitle">We bring showroom-quality detailing to your doorstep. Interior, exterior, and full preparation — every surface restored to perfection.</p>
+    <div class="hero-ctas">
+      <button class="btn-gold" onclick="document.getElementById('book').scrollIntoView()">Book Your Detail →</button>
+      <a id="heroPhoneLink" href="tel:6472809429" class="hero-phone">647 · 280 · 9429</a>
+    </div>
+  </div>
+</div>
+
+<div class="trust reveal">
+  <div class="trust-item"><span class="ic">🚗</span>Mobile service anywhere in the GTA</div>
+  <div class="trust-item"><span class="ic">📅</span>Flexible scheduling</div>
+  <div class="trust-item"><span class="ic">💬</span>Fast response to every request</div>
+  <div class="trust-item"><span class="ic">✨</span>Careful, detailed care</div>
+</div>
+
+<div id="packages" class="section-head reveal">
+  <div class="kicker">Transparent Pricing</div>
+  <h2>Our Packages</h2>
+  <p>Transparent pricing. No hidden fees. No surprises.</p>
+</div>
+<div class="packages reveal" id="packagesGrid"></div>
+
+<div id="portfolio" class="section-head reveal">
+  <div class="kicker">Our Work</div>
+  <h2>Portfolio</h2>
+  <p>A look at how vehicles turn out after our detailing</p>
+</div>
+<div class="filters reveal">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="exterior">Exterior</button>
+  <button class="filter-btn" data-filter="interior">Interior</button>
+  <button class="filter-btn" data-filter="before-after">Before &amp; After</button>
+  <button class="filter-btn" data-filter="full-detail">Full Detail</button>
+</div>
+<div class="gallery reveal" id="galleryGrid"></div>
+
+<div class="section-head reveal">
+  <div class="kicker">Why Choose Us</div>
+  <h2>Built On Trust</h2>
+</div>
+<div class="about reveal">
+  <p>We come to you — with water, equipment, and everything needed — so you never have to go anywhere. We work carefully, thoroughly, and on the time you booked.</p>
+  <div class="about-points">
+    <span><b>✓</b> Our own equipment &amp; supplies</span>
+    <span><b>✓</b> Scheduling around your day</span>
+    <span><b>✓</b> Transparent pricing, no hidden fees</span>
+  </div>
+</div>
+
+<div id="contact" class="section-head reveal">
+  <div class="kicker">Get In Touch</div>
+  <h2>Contact Us</h2>
+  <p>Ready to transform your vehicle? Reach out and we'll bring the showroom to you.</p>
+</div>
+<div class="contact-wrap reveal">
+  <div class="contact-info">
+    <a id="contactPhone" href="tel:6472809429" class="contact-item">
+      <span class="lbl">Phone</span>
+      <span class="val" id="contactPhoneVal">647-280-9429</span>
+    </a>
+    <a id="contactEmail" href="mailto:atl.mobilecardetailing@gmail.com" class="contact-item">
+      <span class="lbl">Email</span>
+      <span class="val" id="contactEmailVal">atl.mobilecardetailing@gmail.com</span>
+    </a>
+    <div class="contact-item">
+      <span class="lbl">Service Area</span>
+      <span class="val" id="contactArea">Greater Toronto Area</span>
+    </div>
+  </div>
+
+  <div id="book" class="card">
+    <h2>Book Your Detail</h2>
+    <p class="sub">Fill out the form and we'll reach out to confirm your time</p>
+
+    <form id="bookingForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" required placeholder="John Smith">
+
+      <div class="row2">
+        <div>
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" required placeholder="+1 416 555 0123">
+        </div>
+        <div>
+          <label for="email">Email (optional)</label>
+          <input type="email" id="email" placeholder="john@example.com">
+        </div>
+      </div>
+
+      <label for="service">Which service are you interested in?</label>
+      <select id="service" required>
+        <option value="">Select a service</option>
+      </select>
+
+      <div class="row2">
+        <div>
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div>
+          <label for="timeWindow">Preferred Time</label>
+          <select id="timeWindow" required>
+            <option value="">Select</option>
+            <option value="Morning (9:00-12:00)">Morning (9:00-12:00)</option>
+            <option value="Afternoon (12:00-16:00)">Afternoon (12:00-16:00)</option>
+            <option value="Evening (16:00-19:00)">Evening (16:00-19:00)</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="address">Address / Area (GTA)</label>
+      <input type="text" id="address" required placeholder="e.g. Mississauga, or full address">
+
+      <label for="notes">Notes (vehicle type, special requests)</label>
+      <textarea id="notes" placeholder="e.g. SUV, heavy pet hair inside"></textarea>
+
+      <button type="submit" id="submitBtn">Request Booking</button>
+      <div class="status" id="status"></div>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="logo-wrap">
+      <img id="logoImgFooter" alt="ATL Mobile Detailing" class="logo-img">
+      <div class="logo-fallback"><span class="g">ATL</span><span>Mobile Detailing</span></div>
+    </div>
+    <div class="footer-meta">
+      <span id="footerArea">Mobile detailing across the Greater Toronto Area</span><br>
+      <span id="footerPhone">647-280-9429</span> · <span id="footerEmail">atl.mobilecardetailing@gmail.com</span><br>
+      © 2026 ATL Mobile Detailing
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ============ BOOKING FORM — do not change WEBHOOK_URL, it feeds the n8n automation ============ */
+  const WEBHOOK_URL = "https://dugaev.app.n8n.cloud/webhook/50157a11-4013-454f-b144-ad2a4178bc93";
+
+  const form = document.getElementById('bookingForm');
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'status';
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const payload = {
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      service: document.getElementById('service').value,
+      date: document.getElementById('date').value,
+      timeWindow: document.getElementById('timeWindow').value,
+      address: document.getElementById('address').value.trim(),
+      notes: document.getElementById('notes').value.trim()
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      status.className = 'status ok';
+      status.textContent = "✓ Request sent! We'll reach out shortly to confirm your time.";
+      form.reset();
+    } catch (err) {
+      status.className = 'status err';
+      status.textContent = '✗ Error: ' + err.message + '. Check the console (F12) for details.';
+      console.error('Webhook submission failed:', err);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Request Booking';
+    }
+  });
+
+  function bookPackage(serviceValue) {
+    document.getElementById('service').value = serviceValue;
+    document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* ============ CONTENT LOADER — reads content.json (editable via /admin) ============ */
+  function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = String(str == null ? '' : str);
+    return d.innerHTML;
+  }
+
+  function categoryToSlug(cat) {
+    return String(cat).toLowerCase().replace(/\s*&\s*/g, '-').replace(/\s+/g, '-');
+  }
+
+  function renderPackages(packages) {
+    const grid = document.getElementById('packagesGrid');
+    grid.innerHTML = packages.map(pkg => `
+      <div class="pkg ${pkg.featured ? 'featured' : ''}">
+        <h3>${esc(pkg.name)}</h3>
+        <div class="price">${esc(pkg.price)}</div>
+        <div class="grp-label">Exterior</div>
+        <ul>${(pkg.exterior || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+        <div class="grp-label">Interior</div>
+        <ul>${(pkg.interior || []).map(i => `<li>${esc(i)}</li>`).join('')}</ul>
+        <button type="button" class="book-btn" onclick="bookPackage('${esc(pkg.name)} Detail (${esc(pkg.price)})')">Book Now</button>
+      </div>
+    `).join('');
+
+    const select = document.getElementById('service');
+    select.innerHTML = '<option value="">Select a service</option>' +
+      packages.map(p => `<option value="${esc(p.name)} Detail (${esc(p.price)})">${esc(p.name)} Detail (${esc(p.price)})</option>`).join('') +
+      '<option value="Not sure yet — advise me">Not sure yet — advise me</option>';
+  }
+
+  function renderGallery(gallery) {
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = gallery.map(item => `
+      <figure class="work-photo" data-cat="${categoryToSlug(item.category)}">
+        <img src="${esc(item.image)}" alt="${esc(item.category)} detail" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('ph');">
+        <div class="work-photo-ph"><span class="ic">📷</span>Photo coming soon</div>
+        <span class="tag">${esc(item.category)}</span>
+      </figure>
+    `).join('');
+    attachFilterHandlers();
+  }
+
+  function attachFilterHandlers() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const workItems = document.querySelectorAll('#galleryGrid .work-photo');
+    filterBtns.forEach(b => {
+      b.onclick = () => {
+        filterBtns.forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        const f = b.dataset.filter;
+        workItems.forEach(item => {
+          item.classList.toggle('hidden', f !== 'all' && item.dataset.cat !== f);
+        });
+      };
+    });
+  }
+
+  function applyContent(data) {
+    if (!data) return;
+
+    if (data.phone) {
+      const tel = 'tel:' + data.phone.replace(/[^\d+]/g, '');
+      document.getElementById('navCallLink').href = tel;
+      document.getElementById('heroPhoneLink').href = tel;
+      document.getElementById('heroPhoneLink').textContent = data.phone;
+      document.getElementById('contactPhone').href = tel;
+      document.getElementById('contactPhoneVal').textContent = data.phone;
+      document.getElementById('footerPhone').textContent = data.phone;
+    }
+    if (data.email) {
+      document.getElementById('contactEmail').href = 'mailto:' + data.email;
+      document.getElementById('contactEmailVal').textContent = data.email;
+      document.getElementById('footerEmail').textContent = data.email;
+    }
+    if (data.serviceArea) {
+      document.getElementById('contactArea').textContent = data.serviceArea;
+      document.getElementById('footerArea').textContent = 'Mobile detailing across the ' + data.serviceArea;
+    }
+    if (data.hero) {
+      if (data.hero.eyebrow) document.getElementById('heroEyebrow').textContent = data.hero.eyebrow;
+      if (data.hero.titleLine1) document.getElementById('heroLine1').textContent = data.hero.titleLine1;
+      if (data.hero.titleLine2) document.getElementById('heroLine2').textContent = data.hero.titleLine2;
+      if (data.hero.subtitle) document.getElementById('heroSubtitle').textContent = data.hero.subtitle;
+    }
+    if (data.logo) {
+      ['logoImgNav', 'logoImgFooter'].forEach(id => {
+        const img = document.getElementById(id);
+        img.src = data.logo;
+        img.style.display = 'block';
+        img.onerror = () => { img.style.display = 'none'; };
+      });
+    }
+    if (data.heroImage) {
+      const img = document.getElementById('heroBgImg');
+      img.src = data.heroImage;
+      img.style.display = 'block';
+    }
+    if (Array.isArray(data.packages) && data.packages.length) renderPackages(data.packages);
+    if (Array.isArray(data.gallery) && data.gallery.length) renderGallery(data.gallery);
+  }
+
+  fetch('content.json?_=' + Date.now())
+    .then(res => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+    .then(applyContent)
+    .catch(err => console.warn('Could not load content.json, showing defaults:', err));
+
+  attachFilterHandlers();
+
+  // Fade-in on scroll
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('show'));
+  }
+</script>
+</body>
+</html>

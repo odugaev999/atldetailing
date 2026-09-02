@@ -1,0 +1,56 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "content"
+    label: "Site Content"
+    files:
+      - file: "content.json"
+        label: "ATL Mobile Detailing — Site Content"
+        name: "content"
+        fields:
+          - { label: "Phone (digits only, e.g. 6472809429)", name: "phone", widget: "string", hint: "Shown as-is on the site, e.g. 647-280-9429" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Service Area", name: "serviceArea", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image", required: false, hint: "Leave empty to use the default text logo" }
+          - { label: "Hero background photo", name: "heroImage", widget: "image", required: false, hint: "Leave empty to use the default dark background" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow tag", name: "eyebrow", widget: "string" }
+              - { label: "Headline — line 1 (white)", name: "titleLine1", widget: "string" }
+              - { label: "Headline — line 2 (gold)", name: "titleLine2", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            summary: "{{name}} — {{price}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price (e.g. $99)", name: "price", widget: "string" }
+              - { label: "Show 'Most Popular' badge", name: "featured", widget: "boolean", default: false }
+              - label: "Exterior features"
+                name: "exterior"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+              - label: "Interior features"
+                name: "interior"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+          - label: "Portfolio Gallery"
+            name: "gallery"
+            widget: "list"
+            summary: "{{category}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Exterior", "Interior", "Before & After", "Full Detail"]
