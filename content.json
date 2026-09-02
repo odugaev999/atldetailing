@@ -1,15 +1,7 @@
 {
-  "phone": "647-280-9429",
-  "email": "atl.mobilecardetailing@gmail.com",
+  "heroImage": "images/hero.jpg",
   "serviceArea": "Greater Toronto Area",
   "logo": "",
-  "heroImage": "images/hero.jpg",
-  "hero": {
-    "eyebrow": "Premium Mobile Detailing",
-    "titleLine1": "ATL Mobile",
-    "titleLine2": "Detailing",
-    "subtitle": "We bring showroom-quality detailing to your doorstep. Interior, exterior, and full preparation — every surface restored to perfection."
-  },
   "packages": [
     {
       "name": "Basic",
@@ -18,8 +10,24 @@
       "fabricDiscount": 0,
       "featured": false,
       "description": "",
-      "exterior": ["Wheel and Tire Cleaning / Tire Shine", "Pre Wash (Removes Dirt and Grime)", "Bug Removal", "Snow Foam (Hand Wash / Two Bucket Method)", "Light Door Jam Wipe Down", "Exterior Window Cleaning", "Glossy Finish"],
-      "interior": ["Full Vacuum (Includes All Cracks and Crevices)", "Interior Window Cleaning", "All Hard Surfaces Scrubbed and Cleaned", "Seat Cleaning (Leather / Upholstery)", "Light Crevice Cleaning", "All Crevices Blown Out With Air", "Trunk & Cargo Area Cleaning"]
+      "exterior": [
+        "Wheel and Tire Cleaning / Tire Shine",
+        "Pre Wash (Removes Dirt and Grime)",
+        "Bug Removal",
+        "Snow Foam (Hand Wash / Two Bucket Method)",
+        "Light Door Jam Wipe Down",
+        "Exterior Window Cleaning",
+        "Glossy Finish"
+      ],
+      "interior": [
+        "Full Vacuum (Includes All Cracks and Crevices)",
+        "Interior Window Cleaning",
+        "All Hard Surfaces Scrubbed and Cleaned",
+        "Seat Cleaning (Leather / Upholstery)",
+        "Light Crevice Cleaning",
+        "All Crevices Blown Out With Air",
+        "Trunk & Cargo Area Cleaning"
+      ]
     },
     {
       "name": "Premium",
@@ -28,8 +36,27 @@
       "fabricDiscount": 15,
       "featured": true,
       "description": "Brings your interior back to like-new condition with deep stain extraction, full salt removal, odor neutralization, and pet hair removal.",
-      "exterior": ["Wheel and Tire Cleaning / Tire Shine", "Wheel Well Cleaning", "Pre Wash (Removes Dirt and Grime)", "Bug Removal", "Snow Foam (Hand Wash / Two Bucket Method)", "Light Door Jam Wipe Down", "Clay Mitt (Removes Rough Contaminants)", "Protective Wax (1-2 Month Protection) OR Hydrophobic Glass Treatment"],
-      "interior": ["Full Vacuum (Includes All Cracks and Crevices)", "Heavy Carpet Shampoo", "Light Upholstery Shampoo", "Interior Window Cleaning", "Steam Cleaning (All Vents and Hard Surfaces)", "Seat Cleaning (Leather / Upholstery)", "Heavy Crevice Cleaning", "All Crevices Blown Out With Air", "Tornador Carpet Cleaning (Lifts Deep Embedded Dirt)"]
+      "exterior": [
+        "Wheel and Tire Cleaning / Tire Shine",
+        "Wheel Well Cleaning",
+        "Pre Wash (Removes Dirt and Grime)",
+        "Bug Removal",
+        "Snow Foam (Hand Wash / Two Bucket Method)",
+        "Light Door Jam Wipe Down",
+        "Clay Mitt (Removes Rough Contaminants)",
+        "Protective Wax (1-2 Month Protection) OR Hydrophobic Glass Treatment"
+      ],
+      "interior": [
+        "Full Vacuum (Includes All Cracks and Crevices)",
+        "Heavy Carpet Shampoo",
+        "Light Upholstery Shampoo",
+        "Interior Window Cleaning",
+        "Steam Cleaning (All Vents and Hard Surfaces)",
+        "Seat Cleaning (Leather / Upholstery)",
+        "Heavy Crevice Cleaning",
+        "All Crevices Blown Out With Air",
+        "Tornador Carpet Cleaning (Lifts Deep Embedded Dirt)"
+      ]
     },
     {
       "name": "Platinum",
@@ -38,17 +65,79 @@
       "fabricDiscount": 15,
       "featured": false,
       "description": "Our most thorough restoration: deep stain extraction, complete salt removal, full odor neutralization, and pet hair removal for a true like-new interior finish.",
-      "exterior": ["Wheel and Tire Cleaning", "Ceramic Tire Shine Coating Applied", "Deep Wheel Well Cleaning", "Bug and Tar Removal", "Snow Foam (Hand Wash / Two Bucket Method)", "Deep Door Jam Cleaning", "Exhaust Tip Cleaning", "Clay Mitt (Removes Rough Contaminants)", "Iron Removal (Decontamination)", "Ceramic Wax (Protects exterior)", "Engine Bay Detailing", "Underneath the Car Cleaning"],
-      "interior": ["Full Vacuum (Includes All Cracks and Crevices)", "Carpet Cleaning", "Heavy Carpet Shampoo", "Heavy Upholstery Shampoo", "Stain Extraction", "Console / Glovebox Deep Clean", "Steam Cleaning (All Vents and Hard Surfaces)", "Heavy Crevice Cleaning", "All Crevices Blown Out With Air", "Salt Stain Removal", "Headliner Cleaning", "Leather & Plastic Conditioning OR Ceramic Coating (Interior Protection)", "Tornador Carpet Cleaning (Lifts Deep Embedded Dirt)"]
+      "exterior": [
+        "Wheel and Tire Cleaning",
+        "Ceramic Tire Shine Coating Applied",
+        "Deep Wheel Well Cleaning",
+        "Bug and Tar Removal",
+        "Snow Foam (Hand Wash / Two Bucket Method)",
+        "Deep Door Jam Cleaning",
+        "Exhaust Tip Cleaning",
+        "Clay Mitt (Removes Rough Contaminants)",
+        "Iron Removal (Decontamination)",
+        "Ceramic Wax (Protects exterior)",
+        "Engine Bay Detailing",
+        "Underneath the Car Cleaning"
+      ],
+      "interior": [
+        "Full Vacuum (Includes All Cracks and Crevices)",
+        "Carpet Cleaning",
+        "Heavy Carpet Shampoo",
+        "Heavy Upholstery Shampoo",
+        "Stain Extraction",
+        "Console / Glovebox Deep Clean",
+        "Steam Cleaning (All Vents and Hard Surfaces)",
+        "Heavy Crevice Cleaning",
+        "All Crevices Blown Out With Air",
+        "Salt Stain Removal",
+        "Headliner Cleaning",
+        "Leather & Plastic Conditioning OR Ceramic Coating (Interior Protection)",
+        "Tornador Carpet Cleaning (Lifts Deep Embedded Dirt)"
+      ]
     }
   ],
-  "quoteCategories": ["RV Detail", "Jet Detail", "Boat Detail", "Specialty Services"],
+  "phone": "647-280-9429",
   "gallery": [
-    {"image": "images/work-1.jpg", "category": "Exterior"},
-    {"image": "images/work-2.jpg", "category": "Interior"},
-    {"image": "images/work-3.jpg", "category": "Before & After"},
-    {"image": "images/work-4.jpg", "category": "Before & After"},
-    {"image": "images/work-5.jpg", "category": "Before & After"},
-    {"image": "images/work-6.jpg", "category": "Interior"}
-  ]
+    {
+      "image": "images/work-1.jpg",
+      "category": "Exterior"
+    },
+    {
+      "image": "images/work-2.jpg",
+      "category": "Interior"
+    },
+    {
+      "image": "images/work-3.jpg",
+      "category": "Before & After"
+    },
+    {
+      "image": "images/work-4.jpg",
+      "category": "Before & After"
+    },
+    {
+      "image": "images/work-5.jpg",
+      "category": "Before & After"
+    },
+    {
+      "image": "images/work-6.jpg",
+      "category": "Interior"
+    },
+    {
+      "image": "/images/uploads/photo_5465662973465532188_y.jpg",
+      "category": "Exterior"
+    }
+  ],
+  "quoteCategories": [
+    "RV Detail",
+    "Jet Detail",
+    "Boat Detail",
+    "Specialty Services"
+  ],
+  "hero": {
+    "eyebrow": "Premium Mobile Detailing",
+    "titleLine1": "ATL Mobile",
+    "titleLine2": "Detailing",
+    "subtitle": "We bring showroom-quality detailing to your doorstep. Interior, exterior, and full preparation — every surface restored to perfection."
+  },
+  "email": "atl.mobilecardetailing@gmail.com"
 }
