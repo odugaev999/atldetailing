@@ -109,32 +109,8 @@
   "phone": "647-280-9429",
   "gallery": [
     {
-      "image": "images/work-1.jpg",
-      "category": "Exterior"
-    },
-    {
-      "image": "images/work-2.jpg",
+      "image": "/images/uploads/photo_5465662973465532188_y.jpg",
       "category": "Interior"
-    },
-    {
-      "image": "images/work-3.jpg",
-      "category": "Before & After"
-    },
-    {
-      "image": "images/work-4.jpg",
-      "category": "Before & After"
-    },
-    {
-      "image": "images/work-5.jpg",
-      "category": "Before & After"
-    },
-    {
-      "image": "images/work-6.jpg",
-      "category": "Interior"
-    },
-    {
-      "videoUrl": "https://base44.app/api/apps/6a2edd1fd45eb76c8c91b753/files/mp/public/6a2edd1fd45eb76c8c91b753/0cd4dfbe2_IMG_8687.MP4",
-      "category": "Before & After"
     }
   ],
   "quoteCategories": [
